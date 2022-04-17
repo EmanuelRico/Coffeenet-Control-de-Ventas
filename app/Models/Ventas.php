@@ -15,6 +15,6 @@ class Ventas extends Model
         'venta',
         'descripcion',
         'preciou',
-        'preciot'
+        'importe'
     ];
 }

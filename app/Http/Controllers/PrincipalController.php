@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Ventas;
+use Barryvdh\DomPDF\Facade\PDF;
 //use App\Models\LogVentas;
 
 class PrincipalController extends Controller
@@ -18,6 +19,14 @@ class PrincipalController extends Controller
     {
         $ventas = Ventas::all();
         return view('/ventas/ver_ventas')->with('ventas', $ventas);
+    }
+
+    public function imprimir($id)
+    {
+        $venta = Ventas::find($id);
+
+        $pdf = PDF::loadView('pdf.pdf_venta', compact('venta'));
+        return $pdf->stream();
     }
 
     public function eliminar($id)
