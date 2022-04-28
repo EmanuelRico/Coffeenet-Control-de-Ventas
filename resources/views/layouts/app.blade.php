@@ -113,11 +113,11 @@
         {{-- <main class="container my-5">
              {{ $slot }} 
         </main> --}}
-        <div>
+        <div class="container-100">
             @yield('content')
         </div>
 
-        <footer class="footer mt-4 py-3 bg-primary text-white">
+        <footer class="footer py-3 bg-primary text-white">
             <div class="d-flex justify-content-center">
                 <h2 class="fw-bolder m-0">CoffeeNet</h2>
                 {{-- <div>

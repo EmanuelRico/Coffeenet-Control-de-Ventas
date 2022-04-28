@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Ventas;
+use App\Models\Productos;
 use Barryvdh\DomPDF\Facade\PDF;
 //use App\Models\LogVentas;
 
@@ -24,8 +25,10 @@ class PrincipalController extends Controller
     public function imprimir($id)
     {
         $venta = Ventas::find($id);
+        $productos = Productos::all()->where('id_venta', '=', $id);
 
-        $pdf = PDF::loadView('pdf.pdf_venta', compact('venta'));
+        $pdf = PDF::loadView('pdf.pdf_venta', compact('venta'), compact('productos'));
+        $pdf->setPaper('Letter');
         return $pdf->stream();
     }
 
@@ -39,18 +42,16 @@ class PrincipalController extends Controller
     public function muestraeditar($id)
     {
         $venta = Ventas::find($id);
+        $productos = Productos::all()->where('id_venta', '=', $id);
 
-        return view('/ventas/editar_venta')->with('venta', $venta);
+        return view('/ventas/editar_venta')->with('venta', $venta)->with('productos', $productos);
     }
 
     public function guardar(Request $request)
     {
         $venta = new Ventas();
-        $venta->cantidad = $request->cantidad;
-        $venta->venta = $request->venta;
-        $venta->descripcion = $request->descripcion;
-        $venta->preciou = $request->preciou;
-        $venta->preciot = $request->preciot;
+        $venta->nombre_cliente = $request->nombre_cliente;
+        $venta->celular_cliente = $request->celular_cliente;
         $venta->save();
 
         /*$log = new LogVentas();
@@ -63,7 +64,7 @@ class PrincipalController extends Controller
         $log->descripcionO = $ventas->descripcion;
         $log->save();*/
 
-        return redirect('/dashboard');
+        return redirect()->action('App\Http\Controllers\PrincipalController@muestraeditar', ['id' => $venta->id]);
     }
 
     public function guardaredicion(Request $request)
@@ -80,10 +81,9 @@ class PrincipalController extends Controller
         $log->descripcionN = $request->descripcion;
         */
 
-        $venta->cantidad = $request->cantidad;
-        $venta->venta = $request->venta;
-        $venta->descripcion = $request->descripcion;
-        $venta->preciou = $request->preciou;
+        $venta->nombre_cliente = $request->nombre_cliente;
+        $venta->celular_cliente = $request->celular_cliente;
+        $venta->adelanto = $request->adelanto;
         $venta->preciot = $request->preciot;
         $venta->save();
 
