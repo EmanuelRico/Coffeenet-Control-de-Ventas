@@ -14,4 +14,7 @@
         </div>
 </div>
 
+<div class="container d-flex justify-content-center align-items-center mt-5 mb-5">
+    <a class="btn btn-outline-primary principal-btn py-4 fw-bold fs-2" href="/ventas/reporte_ventas">Reporte de Ventas</a>
+</div>
 @endsection

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Ventas;
 use App\Models\Productos;
 use Barryvdh\DomPDF\Facade\PDF;
+use Illuminate\Support\Facades\DB;
 //use App\Models\LogVentas;
 
 class PrincipalController extends Controller
@@ -32,6 +33,20 @@ class PrincipalController extends Controller
         return $pdf->stream();
     }
 
+    public function grafica()
+    {
+        $ventas = Ventas::all();
+
+        $result = DB::select(DB::raw("SELECT fecha, SUM(preciot) AS ventasdiarias FROM ventas GROUP BY fecha"));
+        $data = "";
+
+        foreach($result as $val){
+            $data.="['".$val->fecha."', ".$val->ventasdiarias."],";
+        }
+
+        return view('/ventas/reporte_ventas', compact('data'));
+    }
+
     public function eliminar($id)
     {
         $venta = Ventas::find($id);
@@ -52,6 +67,7 @@ class PrincipalController extends Controller
         $venta = new Ventas();
         $venta->nombre_cliente = $request->nombre_cliente;
         $venta->celular_cliente = $request->celular_cliente;
+        $venta->fecha = now()->format('y/m/d');
         $venta->save();
 
         /*$log = new LogVentas();

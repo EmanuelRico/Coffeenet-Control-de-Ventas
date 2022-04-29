@@ -20,6 +20,7 @@ class Ventas extends Migration
             $table->bigInteger('celular_cliente')->nullable();
             $table->float('adelanto')->nullable();
             $table->float('preciot')->nullable();
+            $table->date('fecha')->nullable();
             $table->timestamps();
         });
     }

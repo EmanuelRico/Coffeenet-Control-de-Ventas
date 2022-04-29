@@ -70,6 +70,11 @@
             font-size: 24px;
             font-weight: bold;
         }
+
+        td {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
     </style>
 </head>
 <body class="font">

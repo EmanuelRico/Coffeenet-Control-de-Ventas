@@ -125,6 +125,7 @@
                     <a class="btn btn-primary" type="submit"><i class="title-hover fa-brands fa-xl fa-facebook-square"></i></a>
                 </div> --}}
             </div>
+            <p class="text-center p-0 m-0">Hecho por Emanuel Rico Martínez</p>
         </footer>
 
         @stack('modals')
