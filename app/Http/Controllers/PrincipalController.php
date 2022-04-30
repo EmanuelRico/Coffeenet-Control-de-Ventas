@@ -35,13 +35,11 @@ class PrincipalController extends Controller
 
     public function grafica()
     {
-        $ventas = Ventas::all();
-
-        $result = DB::select(DB::raw("SELECT fecha, SUM(preciot) AS ventasdiarias FROM ventas GROUP BY fecha"));
+        $result = DB::select(DB::raw("SELECT DATE_FORMAT(fecha, '%d/%m') AS fechas, SUM(preciot) AS ventasdiarias FROM ventas GROUP BY fecha"));
         $data = "";
 
         foreach($result as $val){
-            $data.="['".$val->fecha."', ".$val->ventasdiarias."],";
+            $data.="['".$val->fechas."', ".$val->ventasdiarias."],";
         }
 
         return view('/ventas/reporte_ventas', compact('data'));
