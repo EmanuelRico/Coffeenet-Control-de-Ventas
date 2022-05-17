@@ -16,7 +16,7 @@
             <br>
             <br>
             <label class="form-label" for="">Celular del cliente:</label>
-            <input class="form-control" type="number" step="0.01" name="celular_cliente" autocomplete="off" value="{{$venta->celular_cliente}}" required>
+            <input class="form-control" type="number" step="0.01" name="celular_cliente" autocomplete="off" value="{{$venta->celular_cliente}}">
             <br>
             <br>
             <div class="d-flex justify-content-center align-items-center text-center">

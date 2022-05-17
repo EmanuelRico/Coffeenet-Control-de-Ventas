@@ -33,22 +33,48 @@ class PrincipalController extends Controller
         return $pdf->stream();
     }
 
+    public function imprimirglobal()
+    {
+
+        $result = DB::select(DB::raw("SELECT DATE_FORMAT(fecha, '%d/%m') AS fechas, SUM(preciot) AS ventasdiarias FROM ventas GROUP BY fecha"));
+
+        $pdf = PDF::loadView('pdf.pdf_venta_global', compact('result'));
+        $pdf->setPaper('Letter');
+        return $pdf->stream();
+    }
+
     public function grafica()
     {
         $result = DB::select(DB::raw("SELECT DATE_FORMAT(fecha, '%d/%m') AS fechas, SUM(preciot) AS ventasdiarias FROM ventas GROUP BY fecha"));
         $data = "";
 
-        foreach($result as $val){
-            $data.="['".$val->fechas."', ".$val->ventasdiarias."],";
+        foreach ($result as $val) {
+            $data .= "['" . $val->fechas . "', " .$val->ventasdiarias . "],";
         }
 
         return view('/ventas/reporte_ventas', compact('data'));
+    }
+
+    public function nosotros()
+    {
+        return view('/nosotros');
+    }
+
+    public function productos()
+    {
+        return view('/productos');
     }
 
     public function eliminar($id)
     {
         $venta = Ventas::find($id);
         $venta->delete();
+        return redirect()->back();
+    }
+
+    public function eliminarventas()
+    {
+        DB::table('ventas')->delete();
         return redirect()->back();
     }
 
@@ -68,16 +94,6 @@ class PrincipalController extends Controller
         $venta->fecha = now()->format('y/m/d');
         $venta->save();
 
-        /*$log = new LogVentas();
-        $log->idventas = $ventas->id;
-        $log->cantidadN = $ventas->cantidad;
-        $log->ventaN = $ventas->venta;
-        $log->descripcionN = $ventas->descripcion;
-        $log->cantidadO = $ventas->cantidad;
-        $log->ventaO = $ventas->venta;
-        $log->descripcionO = $ventas->descripcion;
-        $log->save();*/
-
         return redirect()->action('App\Http\Controllers\PrincipalController@muestraeditar', ['id' => $venta->id]);
     }
 
@@ -85,20 +101,10 @@ class PrincipalController extends Controller
     {
         $venta = Ventas::find($request->id);
 
-        /*$log = new LogVentas();
-        $log->idventas = $ventas->id;
-        $log->cantidadO = $ventas->cantidad;
-        $log->ventaO = $ventas->venta;
-        $log->descripcionO = $ventas->descripcion;
-        $log->cantidadN = $request->cantidad;
-        $log->ventaN = $request->venta;
-        $log->descripcionN = $request->descripcion;
-        */
-
         $venta->nombre_cliente = $request->nombre_cliente;
         $venta->celular_cliente = $request->celular_cliente;
-        $venta->adelanto = $request->adelanto;
-        $venta->preciot = $request->preciot;
+        $venta->adelanto = floatval($request->adelanto);
+        $venta->preciot = floatval($request->preciot);
         $venta->save();
 
         //$log->save();

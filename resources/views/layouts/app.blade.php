@@ -45,20 +45,12 @@
                             @endif
                         </li>
                         <li class="nav-item fw-bold fs-5">
-                            <a class="nav-link text-white" href="#">Productos</a>
+                            <a class="nav-link text-white" href="/productos">Productos</a>
                         </li>
                         <li class="nav-item fw-bold fs-5">
-                            <a class="nav-link text-white" href="#">Nosotros</a>
+                            <a class="nav-link text-white" href="/nosotros">Nosotros</a>
                         </li>
                     </ul>
-                    
-                    {{-- <div class="pt-0 pb-3 py-lg-0 col-12 col-lg-4">
-                        <form class="d-flex">
-                            @csrf
-                            <input class="form-control me-2 " type="search" placeholder="Buscar" aria-label="Buscar">
-                            <button class="btn btn-primary me-3" type="submit"><i class="title-hover fa-solid fa-lg fa-magnifying-glass text-white"></i></button>
-                        </form>
-                    </div> --}}
     
                     <li class="nav-item dropdown pt-1 pt-lg-0 d-flex align-items-center">
                         <a class="nav-link dropdown-toggle px-0 fa-solid fa-user fa-lg text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>

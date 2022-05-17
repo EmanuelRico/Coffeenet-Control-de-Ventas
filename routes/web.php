@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\ProductoController;
 
@@ -32,14 +33,18 @@ Route::middleware([
 Route::get('/ventas/agregar_venta', [PrincipalController::class, 'agregar']);
 Route::get('/ventas/ver_ventas', [PrincipalController::class, 'ver']);
 Route::get('/ventas/eliminar_venta/{id}', [PrincipalController::class, 'eliminar']);
+Route::post('/ventas/eliminar_ventas', [PrincipalController::class, 'eliminarventas']);
 Route::get('/ventas/editar_venta/{id}', [PrincipalController::class, 'muestraeditar']);
 Route::get('/ventas/pdf/pdf_venta/{id}', [PrincipalController::class, 'imprimir']);
+Route::get('/ventas/pdf/pdf_venta_global/', [PrincipalController::class, 'imprimirglobal']);
 Route::post('/ventas/agregar_venta', [PrincipalController::class, 'guardar']);
 Route::post('/guardaedicion', [PrincipalController::class, 'guardaredicion']);
 
-Route::get('/ventas/eliminar_producto/{id}', [ProductoController::class, 'eliminar']);
+Route::get('/eliminar_producto/{id}', [ProductoController::class, 'eliminar']);
 Route::get('/editar_producto/{id}', [ProductoController::class, 'muestraeditar']);
 Route::post('/ventas/agregar_producto', [ProductoController::class, 'guardar']);
 Route::post('/guardaedicion_producto', [ProductoController::class, 'guardaredicion_producto']);
 
 Route::get('/ventas/reporte_ventas', [PrincipalController::class, 'grafica']);
+Route::get('/nosotros', [PrincipalController::class, 'nosotros']);
+Route::get('/productos', [PrincipalController::class, 'productos']);

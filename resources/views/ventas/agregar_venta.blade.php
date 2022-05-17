@@ -13,10 +13,6 @@
             <input class="form-control" type="text" name="nombre_cliente" autocomplete="off" required>
             <br>
             <br>
-            <label class="form-label" for="">Celular del cliente:</label>
-            <input class="form-control" type="number" step="0.01" name="celular_cliente" autocomplete="off" required>
-            <br>
-            <br>
             <div class="d-flex justify-content-end">
                 <input class="btn btn-info" type="submit" value="Continuar">
             </div>

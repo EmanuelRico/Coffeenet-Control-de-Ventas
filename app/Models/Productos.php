@@ -14,7 +14,7 @@ class Productos extends Model
         'cantidad',
         'producto',
         'descripcion',
-        'preciou',
-        'importe'
+        'preciou' => 'decimal:2',
+        'importe' => 'decimal:2'
     ];
 }

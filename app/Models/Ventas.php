@@ -13,7 +13,7 @@ class Ventas extends Model
     protected $fillable=[
         'nombre_cliente',
         'celular_cliente',
-        'adelanto',
-        'preciot'
+        'adelanto' => 'decimal:2',
+        'preciot' => 'decimal:2'
     ];
 }
