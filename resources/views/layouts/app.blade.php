@@ -82,10 +82,6 @@
                                     </form>
                                 @else
                                     <li><a class="fs-6 me-1 dropdown-item" href="{{ route('login') }}">Inicia Sesión</a></li>
-        
-                                    @if (Route::has('register'))
-                                        <li><a class="fs-6 dropdown-item" href="{{ route('register') }}">Registrate</a></li>
-                                    @endif
                                 @endif
                             @endif
                         </ul>

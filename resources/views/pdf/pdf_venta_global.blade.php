@@ -54,19 +54,20 @@
             </tr>
         </thead>
         <tbody>
-            <?php $suma_total = 0 ?>
+            <?php $suma_total = 0; $sumatf = 0; $ventasdiariasf = 0;?>
             @foreach ($result as $results)
             <tr class="center">
                 <td> {{ $results->fechas }} </td>
-                <td> ${{ $results->ventasdiarias }} </td>
+                <?php $ventasdiariasf = number_format($results->ventasdiarias, 2); ?>
+                <td> ${{ $ventasdiariasf }} </td>
             </tr>
             <?php $suma_total +=  $results->ventasdiarias?>
             @endforeach
         </tbody>
     </table>
-
+    <?php $sumatf = number_format($suma_total, 2);?>
     <h1>Total de Ingresos:</h1>
-    <h1>${{$suma_total}}</h1>
+    <h1>${{$sumatf}}</h1>
     
 </body>
 </html>

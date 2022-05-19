@@ -21,7 +21,7 @@
                         <x-jet-label value="{{ __('Nombre') }}" />
 
                         <x-jet-input class="{{ $errors->has('name') ? 'is-invalid' : '' }}" type="text" name="name"
-                                    :value="old('name')" required autofocus autocomplete="name" />
+                                    :value="old('name')" required autofocus autocomplete="off" />
                         <x-jet-input-error for="name"></x-jet-input-error>
                     </div>
 
@@ -37,14 +37,14 @@
                         <x-jet-label value="{{ __('Contraseña') }}" />
 
                         <x-jet-input class="{{ $errors->has('password') ? 'is-invalid' : '' }}" type="password"
-                                    name="password" required autocomplete="new-password" />
+                                    name="password" required autocomplete="off" />
                         <x-jet-input-error for="password"></x-jet-input-error>
                     </div>
 
                     <div class="mb-3">
                         <x-jet-label value="{{ __('Confirmar contraseña') }}" />
 
-                        <x-jet-input class="form-control" type="password" name="password_confirmation" required autocomplete="new-password" />
+                        <x-jet-input class="form-control" type="password" name="password_confirmation" required autocomplete="off" />
                     </div>
 
                     @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())

@@ -30,6 +30,15 @@ Route::middleware([
     })->name('dashboard');
 });
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/register', function () {
+    if(Auth::user()->type==2){
+        return redirect('/login');
+    }
+    else{
+        return redirect('/login') ;
+    }
+})->name('register');
+
 Route::get('/ventas/agregar_venta', [PrincipalController::class, 'agregar']);
 Route::get('/ventas/ver_ventas', [PrincipalController::class, 'ver']);
 Route::get('/ventas/eliminar_venta/{id}', [PrincipalController::class, 'eliminar']);

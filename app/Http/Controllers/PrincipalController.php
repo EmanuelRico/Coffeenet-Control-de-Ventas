@@ -20,7 +20,8 @@ class PrincipalController extends Controller
     public function ver()
     {
         $ventas = Ventas::all();
-        return view('/ventas/ver_ventas')->with('ventas', $ventas);
+        $contador = count(Ventas::all());
+        return view('/ventas/ver_ventas')->with('ventas', $ventas)->with('contador', $contador);
     }
 
     public function imprimir($id)
@@ -36,7 +37,7 @@ class PrincipalController extends Controller
     public function imprimirglobal()
     {
 
-        $result = DB::select(DB::raw("SELECT DATE_FORMAT(fecha, '%d/%m') AS fechas, SUM(preciot) AS ventasdiarias FROM ventas GROUP BY fecha"));
+        $result = DB::select(DB::raw("SELECT DATE_FORMAT(fecha, '%d/%m/%y') AS fechas, SUM(preciot) AS ventasdiarias FROM ventas GROUP BY fecha"));
 
         $pdf = PDF::loadView('pdf.pdf_venta_global', compact('result'));
         $pdf->setPaper('Letter');
@@ -47,12 +48,13 @@ class PrincipalController extends Controller
     {
         $result = DB::select(DB::raw("SELECT DATE_FORMAT(fecha, '%d/%m') AS fechas, SUM(preciot) AS ventasdiarias FROM ventas GROUP BY fecha"));
         $data = "";
+        $contador = count(Ventas::all());
 
         foreach ($result as $val) {
             $data .= "['" . $val->fechas . "', " .$val->ventasdiarias . "],";
         }
 
-        return view('/ventas/reporte_ventas', compact('data'));
+        return view('/ventas/reporte_ventas', compact('data'))->with('contador', $contador);
     }
 
     public function nosotros()

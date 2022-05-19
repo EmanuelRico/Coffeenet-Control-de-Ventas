@@ -4,17 +4,18 @@
 
 @section('content')
 
-<div class="imgContainer">
+<div class="imgContainer col-12">
     <img class="image" src="{{ asset('assets/nosotros.png') }}" alt="Local_Coffeenet"></img>
     <div class="transparency"></div>
-    <div class="col-md-6 px-0">
+    <div class="col-lg-8 col-md-10 col-sm-12 px-0">
         <h1 class="display-4 title">CoffeeNet Todo Para Sublimación</h1>
-        <p class="lead my-3 description">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what’s most interesting in this post’s contents.</p>
-        <p class="lead mb-0 link"><a href="#" class="text-white fw-bold">Ver Productos...</a></p>
+        <p class="lead my-3 description">CoffeNet Todo Para Sublimación se ha creado con el firme compromiso de proporcionarles a todos nuestros clientes los mejores productos e insumos para el decorado textil digital, respaldados por los lineamientos de control de calidad impuestos por nuestros proveedores internacionales.</p>
     </div>
 </div>
 
-<h1 class="display-4 fst-italic text-center mt-5 mb-5">¿Cómo llegar?</h1>
+<h1 class="display-4 text-center mt-5 mb-5">¿Cómo llegar?</h1>
+
+<p class="fs-3 text-center mt-0">Ubicanos en: Av. Dr. Manuel Nava 130-H, Las Lomas 1ra Secc, 78210 San Luis Potosí, S.L.P</p>
 
 <div class="d-flex justify-content-center">
         <div class="shadow-lg map-area">
@@ -25,5 +26,10 @@
 <div class="d-flex justify-content-center my-3">
     <a href="https://goo.gl/maps/HjWV5SR94WRowJPB9" class="btn btn-primary">Ver en Maps</a>
 </div>
+
+<h1 class="display-4 fst-italic text-center mt-5 mb-3">Contáctanos</h1>
+<p class="fs-3 fst-italic text-center mt-0">Para mayores informes contáctanos vía correo electronico: <a class="fw-bold">fricogarcia@hotmail.com</a></p>
+<p class="fs-3 fst-italic text-center">ó</p>
+<p class="fs-3 fst-italic text-center mb-5">A través de nuestros teléfonos: <a class="fw-bold">4448140880, 4445807577</a></p>
 
 @endsection

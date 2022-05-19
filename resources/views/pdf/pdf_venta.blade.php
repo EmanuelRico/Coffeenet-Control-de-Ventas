@@ -22,7 +22,8 @@
         }
 
         .tsecundario {
-            padding: 10px;
+            text-align: center;
+            padding-bottom: 10px;
         }
 
         .tr {
@@ -66,7 +67,7 @@
 
         .hola {
             width: 250px;
-            margin-left: 500px;
+            margin-left: 480px;
             font-size: 24px;
             font-weight: bold;
         }
@@ -97,20 +98,23 @@
 
     <table>
         <tr class="tr">
-            <td class="bold tprincipal">Cantidad</td>
+            <td class="bold">Cantidad</td>
             <td class="bold tprincipal">Producto</td>
             <td class="bold tprincipal">Descripcion</td>
             <td class="bold tprincipal">Precio por unidad</td>
             <td class="bold tprincipal">Importe</td>
         </tr>
         
+        <?php $preciouf = 0; $importef = 0; ?>
         @foreach($productos as $producto)
             <tr>
                 <td class="tsecundario">{{$producto->cantidad}}</td>
                 <td class="tsecundario">{{$producto->producto}}</td>
                 <td class="tsecundario">{{$producto->descripcion}}</td>
-                <td class="tsecundario">${{$producto->preciou}}</td>
-                <td class="tsecundario">${{$producto->importe}}</td>
+                <?php $preciouf = number_format($producto->preciou, 2); ?>
+                <td class="tsecundario">${{$preciouf}}</td>
+                <?php $importef = number_format($producto->importe, 2); ?>
+                <td class="tsecundario">${{$importef}}</td>
             </tr>
         @endforeach
     </table>
@@ -119,17 +123,21 @@
         <table class="hola">
             <tr>
                 <td style="font-weight:normal">Anticipo:</td>
-                <td style="font-weight:normal">${{$venta->adelanto}}</td>
+                <?php $adelantof = 0; $preciotf = 0; $restaf = 0?>
+                <?php $adelantof = number_format($venta->adelanto, 2); ?>
+                <td style="font-weight:normal">${{$adelantof}}</td>
             </tr>
 
             <tr>
                 <td style="font-weight:normal">Total:</td>
-                <td style="font-weight:normal">${{$venta->preciot}}</td>
+                <?php $preciotf = number_format($venta->preciot, 2); ?>
+                <td style="font-weight:normal">${{$preciotf}}</td>
             </tr>
 
             <tr>
                 <td>Resta:</td>
-                <td>${{$venta->preciot - $venta->adelanto}}</td>
+                <?php $restaf = number_format($venta->preciot - $venta->adelanto, 2); ?>
+                <td>${{$restaf}}</td>
             </tr>
         </table>
 

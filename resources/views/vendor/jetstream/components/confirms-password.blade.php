@@ -1,4 +1,4 @@
-@props(['title' => __('Confirm Password'), 'content' => __('For your security, please confirm your password to continue.'), 'button' => __('Confirm')])
+@props(['title' => __('Confirm Password'), 'content' => __('Por tu seguridad, por favor confirma tu contraseña para continuar.'), 'button' => __('Confirmar')])
 
 @php
     $confirmableId = md5($attributes->wire('then'));
@@ -24,7 +24,7 @@
         {{ $content }}
 
         <div class="mt-4" x-data="{}" x-on:confirming-password.window="setTimeout(() => $refs.confirmable_password.focus(), 250)">
-            <x-jet-input type="password" class="{{ $errors->has('confirmable_password') ? 'is-invalid' : '' }}" placeholder="{{ __('Password') }}"
+            <x-jet-input type="password" class="{{ $errors->has('confirmable_password') ? 'is-invalid' : '' }}" placeholder="{{ __('Contraseña') }}"
                          x-ref="confirmable_password"
                          wire:model.defer="confirmablePassword"
                          wire:keydown.enter="confirmPassword" />
@@ -35,14 +35,10 @@
 
     <x-slot name="footer">
         <x-jet-secondary-button wire:click="stopConfirmingPassword" wire:loading.attr="disabled">
-            {{ __('Cancel') }}
+            {{ __('Cancelar') }}
         </x-jet-secondary-button>
 
         <x-jet-button class="ms-2" wire:click="confirmPassword" wire:loading.attr="disabled">
-            <div wire:loading wire:target="confirmPassword" class="spinner-border spinner-border-sm" role="status">
-                <span class="visually-hidden">Loading...</span>
-            </div>
-
             {{ $button }}
         </x-jet-button>
     </x-slot>

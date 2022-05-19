@@ -25,8 +25,11 @@
                 </button>
             </div>
             <div>
+                <?php $preciouf = 0; $importef = 0;?>
                 @foreach($productos as $producto)
-                <p class="fw-bold border rounded p-3 my-1 mb-3">Cantidad: {{$producto->cantidad}} | Producto: {{$producto->producto}} | Descripción: {{$producto->descripcion}} | Precio por unidad: ${{$producto->preciou}} | IMPORTE: ${{$producto->importe}} <a class="btn btn-danger mx-3" href="/eliminar_producto/{{$producto->id}}">Eliminar</a> <a class="btn btn-info me-3" data-bs-toggle="modal" data-bs-target="#exampleModal{{$producto->id}}">Editar</a></p>
+                <?php $preciouf = number_format($producto->preciou, 2); ?>
+                <?php $importef = number_format($producto->importe, 2); ?>
+                <p class="fw-bold border rounded p-3 my-1 mb-3">Cantidad: {{$producto->cantidad}} | Producto: {{$producto->producto}} | Descripción: {{$producto->descripcion}} | Precio por unidad: ${{$preciouf}} | IMPORTE: ${{$importef}} <a class="btn btn-danger mx-3" href="/eliminar_producto/{{$producto->id}}">Eliminar</a> <a class="btn btn-info me-3" data-bs-toggle="modal" data-bs-target="#exampleModal{{$producto->id}}">Editar</a></p>
                 @endforeach
             </div>
             <br>
