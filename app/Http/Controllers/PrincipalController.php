@@ -7,7 +7,6 @@ use App\Models\Ventas;
 use App\Models\Productos;
 use Barryvdh\DomPDF\Facade\PDF;
 use Illuminate\Support\Facades\DB;
-//use App\Models\LogVentas;
 
 class PrincipalController extends Controller
 {

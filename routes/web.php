@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\ProductoController;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\VentasExport;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -57,3 +60,7 @@ Route::post('/guardaedicion_producto', [ProductoController::class, 'guardaredici
 Route::get('/ventas/reporte_ventas', [PrincipalController::class, 'grafica']);
 Route::get('/nosotros', [PrincipalController::class, 'nosotros']);
 Route::get('/productos', [PrincipalController::class, 'productos']);
+
+Route::get('/export-csv', function () {
+    return Excel::download(new VentasExport, 'ventas.csv');
+});

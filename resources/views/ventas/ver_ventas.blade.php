@@ -4,13 +4,14 @@
 
 @section('content')
     <div class="container">
-        <h1 class="text-center pt-5 mb-4">Ventas</h1>
+        <h1 class="text-center pt-5 mb-5">Ventas</h1>
         <div class="d-flex justify-content-end">
             @if ($contador > 0)
                 <a href="/ventas/pdf/pdf_venta_global/" class="btn btn-outline-primary border-3 me-2">Reporte de ventas
                     acumuladas</a>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Borrar todas
+                <button type="button" class="btn btn-outline-danger border-3 me-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Eliminar todas
                     las ventas</button>
+                <a href="/export-csv" class="btn btn-primary">Exportar Excel</a>
             @endif
         </div>
         @if ($contador == 0)
@@ -37,7 +38,7 @@
                                 <?php $preciotf = number_format($venta->preciot, 2); ?>
                                 <td>${{ $preciotf }}</td>
                                 <td>
-                                    <a class="btn btn-danger mx-3" href="/ventas/eliminar_venta/{{ $venta->id }}">Eliminar</a>
+                                    <button type="button" class="btn btn-danger border-3 me-2" data-bs-toggle="modal" data-bs-target="#exampleModal2{{ $venta->id }}">Eliminar</button>
                                     <a class="btn btn-info me-3" href="/ventas/editar_venta/{{ $venta->id }}">Editar</a>
                                     <a class="fa-regular fa-file-pdf fa-2xl me-3"
                                         href="/ventas/pdf/pdf_venta/{{ $venta->id }}"></a>
@@ -51,11 +52,11 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Eliminar todas las ventas</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            ¿Estás seguro/a de borrar todas las ventas?
+                            ¿Estás seguro/a de eliminar todas las ventas?
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-primary border-3"
@@ -68,6 +69,27 @@
                     </div>
                 </div>
             </div>
+
+            @foreach ($ventas as $venta)
+            <div class="modal fade" id="exampleModal2{{ $venta->id }}" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="ModalLabel">Eliminar Venta</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            ¿Estás seguro/a de eliminar esta venta?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-primary border-3"
+                                data-bs-dismiss="modal">Cancelar</button>
+                            <a class="btn btn-danger mx-3" href="/ventas/eliminar_venta/{{ $venta->id }}">Eliminar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
         @endif
     </div>
 @endsection
