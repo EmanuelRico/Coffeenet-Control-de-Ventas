@@ -108,8 +108,6 @@ class PrincipalController extends Controller
         $venta->preciot = floatval($request->preciot);
         $venta->save();
 
-        //$log->save();
-
         return redirect('/ventas/ver_ventas');
     }
 }
